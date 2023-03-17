@@ -1,6 +1,8 @@
+using AutoMapper;
 using ChatNetCore.Data;
 using ChatNetCore.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
@@ -20,8 +22,9 @@ builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
 builder.Services.AddAuthentication()
-    .AddIdentityServerJwt();
+.AddIdentityServerJwt();
 
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
