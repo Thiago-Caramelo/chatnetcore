@@ -17,7 +17,6 @@ namespace Data
         {
         }
 
-        public virtual DbSet<Chat> Chat { get; set; } = null!;
         public virtual DbSet<ChatMessage> ChatMessage { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,11 +30,6 @@ namespace Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Chat>(entity =>
-            {
-                entity.Property(e => e.Id).HasMaxLength(50);
-            });
-
             modelBuilder.Entity<ChatMessage>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -43,12 +37,6 @@ namespace Data
                 entity.Property(e => e.ChatId).HasMaxLength(50);
 
                 entity.Property(e => e.UserName).HasMaxLength(50);
-
-                entity.HasOne(d => d.Chat)
-                    .WithMany(p => p.ChatMessage)
-                    .HasForeignKey(d => d.ChatId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Chat");
             });
 
             OnModelCreatingPartial(modelBuilder);

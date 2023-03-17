@@ -10,7 +10,5 @@ namespace Data.Models
         public string UserName { get; set; } = null!;
         public string Text { get; set; } = null!;
         public string ChatId { get; set; } = null!;
-
-        public virtual Chat Chat { get; set; } = null!;
     }
 }
