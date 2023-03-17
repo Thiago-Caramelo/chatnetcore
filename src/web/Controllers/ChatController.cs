@@ -26,7 +26,7 @@ namespace ChatNetCore.Controllers
         }
 
         [HttpPost("{id}/messages")]
-        public Task SendMessage(Message message)
+        public Task SendMessage([FromBody]Message message)
         {
             return _chatService.SendMessage(message);
         }

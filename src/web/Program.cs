@@ -1,6 +1,10 @@
 using AutoMapper;
+using Business.Interfaces;
+using Business.Services;
 using ChatNetCore.Data;
 using ChatNetCore.Models;
+using Data;
+using Data.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +14,14 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<IChatRepository, ChatRepository>();
+builder.Services.AddTransient<IChatService, Chat>();
+
+
+var chatString = builder.Configuration.GetConnectionString("ChatConnection");
+builder.Services.AddDbContext<ChatDbContext>(options =>
+    options.UseSqlServer(chatString));
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));

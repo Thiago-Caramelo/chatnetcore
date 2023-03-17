@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Business.Services
 {
-    public class Chat : IChatService
+    public class ChatService : IChatService
     {
         private readonly IChatRepository chatRepository;
         
-        public Chat(IChatRepository chatRepository)
+        public ChatService(IChatRepository chatRepository)
         {
             this.chatRepository = chatRepository;
         }
