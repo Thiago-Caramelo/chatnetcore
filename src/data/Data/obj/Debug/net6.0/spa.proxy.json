@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "",
+"LaunchCommand": "",
+"WorkingDirectory": "C:\\Projects\\chatnetcore\\src\\data\\Data",
+"MaxTimeoutInSeconds": "120"
+}
+}
