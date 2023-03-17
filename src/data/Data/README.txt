@@ -1,0 +1,1 @@
+Scaffold-DbContext -Project "Data" -StartupProject "Data" "Data Source=(localdb)\mssqllocaldb;Database=chat;Trusted_Connection=True;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -Context ChatDbContext -ContextDir . -OutputDir Models -Force -NoPluralize
