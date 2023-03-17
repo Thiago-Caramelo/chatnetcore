@@ -1240,6 +1240,16 @@
             "rid": "win"
           }
         }
+      },
+      "Business/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Business.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Business.dll": {}
+        }
       }
     }
   },
@@ -3096,10 +3106,17 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Business/1.0.0": {
+      "type": "project",
+      "path": "../../business/Business/Business.csproj",
+      "msbuildProject": "../../business/Business/Business.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "AutoMapper >= 10.0.0",
+      "Business >= 1.0.0",
       "Microsoft.AspNetCore.ApiAuthorization.IdentityServer >= 6.0.14",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.14",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.14",
@@ -3136,7 +3153,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Projects\\chatnetcore\\src\\business\\Business\\Business.csproj": {
+              "projectPath": "C:\\Projects\\chatnetcore\\src\\business\\Business\\Business.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -3149,6 +3170,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[10.0.0, )"
+          },
           "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": {
             "target": "Package",
             "version": "[6.0.14, )"

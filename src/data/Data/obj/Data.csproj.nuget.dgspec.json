@@ -4,14 +4,14 @@
     "C:\\Projects\\chatnetcore\\src\\data\\Data\\Data.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\chatnetcore\\src\\data\\Data\\Data.csproj": {
+    "C:\\Projects\\chatnetcore\\src\\business\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\chatnetcore\\src\\data\\Data\\Data.csproj",
-        "projectName": "Data",
-        "projectPath": "C:\\Projects\\chatnetcore\\src\\data\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Projects\\chatnetcore\\src\\business\\Business\\Business.csproj",
+        "projectName": "Business",
+        "projectPath": "C:\\Projects\\chatnetcore\\src\\business\\Business\\Business.csproj",
         "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\chatnetcore\\src\\data\\Data\\obj\\",
+        "outputPath": "C:\\Projects\\chatnetcore\\src\\business\\Business\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,7 +39,70 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projects\\chatnetcore\\src\\data\\Data\\Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\chatnetcore\\src\\data\\Data\\Data.csproj",
+        "projectName": "Data",
+        "projectPath": "C:\\Projects\\chatnetcore\\src\\data\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\chatnetcore\\src\\data\\Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Projects\\chatnetcore\\src\\business\\Business\\Business.csproj": {
+                "projectPath": "C:\\Projects\\chatnetcore\\src\\business\\Business\\Business.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            },
             "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": {
               "target": "Package",
               "version": "[6.0.14, )"
