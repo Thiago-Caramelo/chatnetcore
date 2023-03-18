@@ -17,7 +17,7 @@ namespace Bot
             using HttpClient client = new();
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
+                new MediaTypeWithQualityHeaderValue("application/csv"));
             client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
 
             var stockUrl = $"https://stooq.com/q/l/?s={code.ToLower()}&f=sd2t2ohlcv&h&e=csv";

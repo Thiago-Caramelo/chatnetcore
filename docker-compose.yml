@@ -1,0 +1,52 @@
+version: "3.2"
+services:
+  mssql-server:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "numsey#2021"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+    networks:
+        - rabbitmq_netcore
+  web:
+    build:
+      context: .
+      dockerfile: ./src/web/Dockerfile
+    environment:
+      DefaultConnection: "Server=mssql-server;Database=auth;User Id=sa;Password=numsey#2021;"
+      ChatConnection: "Server=mssql-server;Database=auth;User Id=sa;Password=numsey#2021;"
+    ports: 
+      - "80:8563"
+    networks:
+        - rabbitmq_netcore
+  api:
+    build:
+      context: .
+      dockerfile: ./src/api/Api/Dockerfile
+    environment:
+      DefaultConnection: "Server=mssql-server;Database=auth;User Id=sa;Password=numsey#2021;"
+      ChatConnection: "Server=mssql-server;Database=auth;User Id=sa;Password=numsey#2021;"
+    ports: 
+      - "80:8564"
+    networks:
+        - rabbitmq_netcore
+  bot:
+    build:
+      context: .
+      dockerfile: ./src/bot/Bot/Dockerfile
+    networks:
+        - rabbitmq_netcore         
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    networks:
+        - rabbitmq_netcore
+
+networks:
+  rabbitmq_netcore:
+    driver: bridge

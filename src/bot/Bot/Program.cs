@@ -3,7 +3,7 @@ using Bot;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-var factory = new ConnectionFactory { HostName = "rabbitmq" };
+var factory = new ConnectionFactory { HostName = "rabbitmq", Port = 5672, UserName = "guest", Password = "guest", Ssl = { Enabled = false } };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 

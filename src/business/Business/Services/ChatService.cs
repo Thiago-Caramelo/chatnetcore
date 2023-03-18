@@ -1,4 +1,5 @@
-﻿using Business.Interfaces;
+﻿using Bot;
+using Business.Interfaces;
 using Business.Models;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace Business.Services
     public class ChatService : IChatService
     {
         private readonly IChatRepository chatRepository;
-        
-        public ChatService(IChatRepository chatRepository)
+        private readonly IBotService botService;
+
+        public ChatService(IChatRepository chatRepository, IBotService botService)
         {
             this.chatRepository = chatRepository;
+            this.botService = botService;
         }
 
         public Task<List<Message>> GetMessages(string chatId)
@@ -24,6 +27,12 @@ namespace Business.Services
 
         public Task SendMessage(Message message)
         {
+            if ("/stock=".Contains(message?.Text?.Trim(), StringComparison.InvariantCultureIgnoreCase))
+            {
+                botService.SendStockCode(message.Text.Trim().ToLowerInvariant().Replace("/stock=", string.Empty));
+                return Task.CompletedTask;
+            }
+
             return chatRepository.SendMessage(message);
         }
     }

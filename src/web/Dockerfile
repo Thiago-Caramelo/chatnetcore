@@ -6,10 +6,21 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+
+# Update package lists and install necessary dependencies
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
+
+# Install npm
+RUN npm install -g npm
+
 WORKDIR /src
 COPY ["src/web/ChatNetCore.csproj", "src/web/"]
 COPY ["src/data/Data/Data.csproj", "src/data/Data/"]
 COPY ["src/business/Business/Business.csproj", "src/business/Business/"]
+COPY ["src/bot/Bot/Bot.csproj", "src/bot/Bot/"]
 RUN dotnet restore "src/web/ChatNetCore.csproj"
 COPY . .
 WORKDIR "/src/src/web"
