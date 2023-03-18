@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddTransient<IChatRepository, ChatRepository>();
 builder.Services.AddTransient<IChatService, ChatService>();
+builder.Services.AddTransient<DbInitialiser>();
 
 
 var chatString = builder.Configuration.GetConnectionString("ChatConnection");
@@ -41,6 +42,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+
+var services = scope.ServiceProvider;
+
+var initialiser = services.GetRequiredService<DbInitialiser>();
+
+initialiser.Run();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

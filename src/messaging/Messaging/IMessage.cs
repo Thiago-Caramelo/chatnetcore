@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Messaging
 {
-    internal interface IListenMessage
+    internal interface IMessage
     {
+
     }
 }
