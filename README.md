@@ -1,1 +1,1 @@
-# chatnetcore
+One could run this application by having Docker and Docker Compose running locally, then just open a command line in this folder and run "docker-compose up".

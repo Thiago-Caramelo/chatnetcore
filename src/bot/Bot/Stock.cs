@@ -12,7 +12,7 @@ namespace Bot
 {
     internal static class Stock
     {
-        public static void ProcessStock(string code)
+        public static string ProcessStock(string code)
         {
             using HttpClient client = new();
             client.DefaultRequestHeaders.Accept.Clear();
@@ -39,6 +39,8 @@ namespace Bot
                 var currentQuote = $"{code.ToUpper()} quote is ${firstQuote?.Close} per share";
 
                 Console.WriteLine(currentQuote);
+
+                return currentQuote;
             }
         }
     }

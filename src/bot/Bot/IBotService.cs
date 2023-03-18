@@ -9,5 +9,6 @@ namespace Bot
     public interface IBotService
     {
         public void SendStockCode(string code);
+        public string GetStockQuote();
     }
 }

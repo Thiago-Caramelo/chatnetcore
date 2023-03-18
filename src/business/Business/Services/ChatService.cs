@@ -20,9 +20,23 @@ namespace Business.Services
             this.botService = botService;
         }
 
-        public Task<List<Message>> GetMessages(string chatId)
+        public async Task<List<Message>> GetMessages(string chatId)
         {
-            return chatRepository.GetMessages(chatId);
+            var messages = await chatRepository.GetMessages(chatId);
+
+            var quote = botService.GetStockQuote();
+
+            if (!String.IsNullOrWhiteSpace(quote))
+            {
+                messages.Insert(0, new Message {
+                    CreatedOn = DateTime.UtcNow,
+                    Id = Guid.NewGuid(),
+                    Text = quote,
+                    UserName = "BOT",
+                });
+            }
+
+            return messages;
         }
 
         public Task SendMessage(Message message)

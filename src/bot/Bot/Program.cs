@@ -27,7 +27,20 @@ consumer.Received += (model, ea) =>
 
         Console.WriteLine($"Received: {message}");
 
-        Stock.ProcessStock(message);
+        var currentQuote = Stock.ProcessStock(message);
+
+        channel.QueueDeclare(queue: "stock-result",
+                             durable: false,
+                             exclusive: false,
+                             autoDelete: false,
+                             arguments: null);
+
+        body = Encoding.UTF8.GetBytes(currentQuote);
+        channel.BasicPublish(exchange: string.Empty,
+                             routingKey: "stock-result",
+                             basicProperties: null,
+                             body: body);
+
     }
     catch (Exception ex)
     {
