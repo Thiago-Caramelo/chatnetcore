@@ -11,7 +11,7 @@ export function Counter(props) {
         queryFn: async () => {
             const token = await authService.getAccessToken();
             return axios
-                .get("api/chat/general", { headers: !token ? {} : { 'Authorization': `Bearer ${token}` }  })
+                .get("chat", { headers: !token ? {} : { 'Authorization': `Bearer ${token}` }  })
                 .then((res) => res.data);
         },
     });

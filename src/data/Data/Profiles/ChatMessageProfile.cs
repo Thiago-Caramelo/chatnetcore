@@ -14,6 +14,7 @@ namespace Data.Profiles
         public ChatMessageProfile()
         {
             CreateMap<Message, ChatMessage>();
+            CreateMap<ChatMessage, Message>();
         }
     }
 }

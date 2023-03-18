@@ -1,14 +1,12 @@
-﻿using Business.Interfaces;
+using Business.Interfaces;
 using Business.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ChatNetCore.Controllers
+namespace Api.Controllers
 {
-    //[Authorize]
-    //[Route("api/[controller]")]
-    //[ApiController]
-    public class ChatController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class ChatController : ControllerBase
     {
         private readonly ILogger<ChatController> _logger;
         private readonly IChatService _chatService;
@@ -19,14 +17,15 @@ namespace ChatNetCore.Controllers
             _chatService = chatService;
         }
 
-        [HttpGet("api/chat/{id}")]
-        public Task<List<Message>> Get([FromRoute]string id)
+        [HttpGet(Name = "GetMessages")]
+        public async Task<List<Message>> Get()
         {
-            return _chatService.GetMessages(id);
+            var results = await _chatService.GetMessages("general");
+            return results;
         }
 
-        [HttpPost]
-        public Task SendMessage([FromBody]Message message)
+        [HttpPost(Name = "SemdMessage")]
+        public Task SendMessage([FromBody] Message message)
         {
             return _chatService.SendMessage(message);
         }

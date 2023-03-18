@@ -18,7 +18,6 @@ builder.Services.AddTransient<IChatRepository, ChatRepository>();
 builder.Services.AddTransient<IChatService, ChatService>();
 builder.Services.AddTransient<DbInitialiser>();
 
-
 var chatString = builder.Configuration.GetConnectionString("ChatConnection");
 builder.Services.AddDbContext<ChatDbContext>(options =>
     options.UseSqlServer(chatString));
