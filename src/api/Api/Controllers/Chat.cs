@@ -1,5 +1,6 @@
 using Business.Interfaces;
 using Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -24,7 +25,7 @@ namespace Api.Controllers
             return results;
         }
 
-        [HttpPost(Name = "SemdMessage")]
+        [HttpPost(Name = "SendMessage")]
         public Task SendMessage([FromBody] Message message)
         {
             return _chatService.SendMessage(message);
