@@ -34,7 +34,11 @@ namespace Bot
             {
                 var records = csv.GetRecords<StockModel>();
 
-                var currentQuote = $"{code.ToUpper()} quote is $93.42 per share";
+                var firstQuote = records.FirstOrDefault();
+
+                var currentQuote = $"{code.ToUpper()} quote is ${firstQuote?.Close} per share";
+
+                Console.WriteLine(currentQuote);
             }
         }
     }

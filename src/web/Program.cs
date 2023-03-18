@@ -1,4 +1,5 @@
 using AutoMapper;
+using Bot;
 using Business.Interfaces;
 using Business.Services;
 using ChatNetCore.Data;
@@ -16,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddTransient<IChatRepository, ChatRepository>();
 builder.Services.AddTransient<IChatService, ChatService>();
+builder.Services.AddTransient<IBotService, BotService>();
 builder.Services.AddTransient<DbInitialiser>();
 
 var chatString = builder.Configuration.GetConnectionString("ChatConnection");

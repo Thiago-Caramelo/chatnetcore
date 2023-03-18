@@ -15,10 +15,10 @@ services:
       context: .
       dockerfile: ./src/web/Dockerfile
     environment:
-      DefaultConnection: "Server=mssql-server;Database=auth;User Id=sa;Password=numsey#2021;"
-      ChatConnection: "Server=mssql-server;Database=auth;User Id=sa;Password=numsey#2021;"
+      - ConnectionStrings__DefaultConnection=Server=mssql-server;Database=auth;User Id=sa;Password=numsey#2021;
+      - ConnectionStrings__ChatConnection=Server=mssql-server;Database=chat;User Id=sa;Password=numsey#2021;
     ports: 
-      - "80:8563"
+      - "8563:80"
     networks:
         - rabbitmq_netcore
   api:
@@ -26,10 +26,10 @@ services:
       context: .
       dockerfile: ./src/api/Api/Dockerfile
     environment:
-      DefaultConnection: "Server=mssql-server;Database=auth;User Id=sa;Password=numsey#2021;"
-      ChatConnection: "Server=mssql-server;Database=auth;User Id=sa;Password=numsey#2021;"
+      - ConnectionStrings__DefaultConnection=Server=mssql-server;Database=auth;User Id=sa;Password=numsey#2021;
+      - ConnectionStrings__ChatConnection=Server=mssql-server;Database=chat;User Id=sa;Password=numsey#2021;
     ports: 
-      - "80:8564"
+      - "8564:80"
     networks:
         - rabbitmq_netcore
   bot:

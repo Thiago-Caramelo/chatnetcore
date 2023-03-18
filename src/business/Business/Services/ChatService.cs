@@ -27,7 +27,8 @@ namespace Business.Services
 
         public Task SendMessage(Message message)
         {
-            if ("/stock=".Contains(message?.Text?.Trim(), StringComparison.InvariantCultureIgnoreCase))
+            var text = message?.Text?.Trim() ?? string.Empty;
+            if (text.Contains("/stock=", StringComparison.InvariantCultureIgnoreCase))
             {
                 botService.SendStockCode(message.Text.Trim().ToLowerInvariant().Replace("/stock=", string.Empty));
                 return Task.CompletedTask;

@@ -11,8 +11,11 @@ namespace Bot
     {
         public void SendStockCode(string code)
         {
-            var factory = new ConnectionFactory { HostName = "rabbitmq", Port = 5672, UserName = "guest", Password = "guest", Ssl = { Enabled = false } };
-            using var connection = factory.CreateConnection();
+            var factory = new ConnectionFactory();
+            var endpoints = new List<AmqpTcpEndpoint> {
+              new AmqpTcpEndpoint("localhost")
+            };
+            using var connection = factory.CreateConnection(endpoints);
             using var channel = connection.CreateModel();
 
             channel.QueueDeclare(queue: "stock",

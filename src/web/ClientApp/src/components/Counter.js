@@ -13,8 +13,10 @@ export function Counter(props) {
         queryKey: ["messages"],
         queryFn: async () => {
             const token = await authService.getAccessToken();
+            if (!token) return [];
+
             return axios
-                .get("https://localhost:7077/Chat", { headers: !token ? {} : { 'Authorization': `Bearer ${token}` } })
+                .get("https://localhost:8564/chat", { headers: !token ? {} : { 'Authorization': `Bearer ${token}` } })
                 .then((res) => res.data);
         },
     });
@@ -29,7 +31,7 @@ export function Counter(props) {
         if (!user || !token) return false;
 
         const userName = user.name;
-        await axios.post("https://localhost:7077/Chat", { userName, text }, { headers: !token ? {} : { 'Authorization': `Bearer ${token}` } });
+        await axios.post("https://localhost:8564/chat", { userName, text }, { headers: !token ? {} : { 'Authorization': `Bearer ${token}` } });
         queryClient.invalidateQueries({ queryKey: ['messages'] });
         setText('');
     };
