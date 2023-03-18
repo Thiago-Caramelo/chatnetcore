@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddTransient<IChatRepository, ChatRepository>();
-builder.Services.AddTransient<IChatService, Chat>();
+builder.Services.AddTransient<IChatService, ChatService>();
 
 
 var chatString = builder.Configuration.GetConnectionString("ChatConnection");
@@ -56,6 +56,7 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
 
 app.UseAuthentication();
 app.UseIdentityServer();
