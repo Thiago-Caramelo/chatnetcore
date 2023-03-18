@@ -8,5 +8,6 @@ namespace Messaging
 {
     internal interface ISendMessage
     {
+
     }
 }

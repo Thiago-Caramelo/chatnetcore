@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
+using System.Runtime.ConstrainedExecution;
 
 namespace Bot
 {
@@ -19,7 +20,7 @@ namespace Bot
                 new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
             client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
 
-            var stockUrl = "https://stooq.com/q/l/?s=aapl.us&f=sd2t2ohlcv&h&e=csv";
+            var stockUrl = $"https://stooq.com/q/l/?s={code.ToLower()}&f=sd2t2ohlcv&h&e=csv";
 
             HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, stockUrl);
 
@@ -32,6 +33,8 @@ namespace Bot
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 var records = csv.GetRecords<StockModel>();
+
+                var currentQuote = $"{code.ToUpper()} quote is $93.42 per share";
             }
         }
     }

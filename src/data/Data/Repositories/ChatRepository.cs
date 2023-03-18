@@ -26,6 +26,8 @@ namespace Data.Repositories
         {
             return _context.ChatMessage
                 .ProjectTo<Message>(_mapper.ConfigurationProvider)
+                .Take(50)
+                .OrderByDescending(x => x.CreatedOn)
                 .ToListAsync();
         }
 
