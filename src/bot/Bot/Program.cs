@@ -3,11 +3,13 @@ using Bot;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-var factory = new ConnectionFactory();
-var endpoints = new List<AmqpTcpEndpoint> {
-  new AmqpTcpEndpoint("localhost")
+AutoResetEvent waitHandle = new AutoResetEvent(false);
+
+var factory = new ConnectionFactory
+{
+    Uri = new Uri("amqp://guest:guest@rabbitmq:5672/")
 };
-using var connection = factory.CreateConnection(endpoints);
+using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
 channel.QueueDeclare(queue: "stock",
@@ -54,3 +56,4 @@ channel.BasicConsume(queue: "stock",
 
 Console.WriteLine("Listening to messages.");
 Console.ReadLine();
+waitHandle.WaitOne();

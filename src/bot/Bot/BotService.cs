@@ -11,11 +11,11 @@ namespace Bot
     {
         public void SendStockCode(string code)
         {
-            var factory = new ConnectionFactory();
-            var endpoints = new List<AmqpTcpEndpoint> {
-              new AmqpTcpEndpoint("localhost")
+            var factory = new ConnectionFactory
+            {
+                Uri = new Uri("amqp://guest:guest@rabbitmq:5672/")
             };
-            using var connection = factory.CreateConnection(endpoints);
+            using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
             channel.QueueDeclare(queue: "stock",
@@ -33,11 +33,11 @@ namespace Bot
 
         public string GetStockQuote()
         {
-            var factory = new ConnectionFactory();
-            var endpoints = new List<AmqpTcpEndpoint> {
-              new AmqpTcpEndpoint("localhost")
+            var factory = new ConnectionFactory
+            {
+                Uri = new Uri("amqp://guest:guest@rabbitmq:5672/")
             };
-            using var connection = factory.CreateConnection(endpoints);
+            using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
             channel.QueueDeclare(queue: "stock",

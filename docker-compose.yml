@@ -21,6 +21,9 @@ services:
       - "8563:80"
     networks:
         - rabbitmq_netcore
+    depends_on:
+      - rabbitmq
+      - mssql-server
   api:
     build:
       context: .
@@ -32,12 +35,18 @@ services:
       - "8564:80"
     networks:
         - rabbitmq_netcore
+    depends_on:
+      - rabbitmq
+      - mssql-server
   bot:
     build:
       context: .
       dockerfile: ./src/bot/Bot/Dockerfile
     networks:
         - rabbitmq_netcore         
+    depends_on:
+      - rabbitmq
+      - mssql-server
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: 'rabbitmq'
