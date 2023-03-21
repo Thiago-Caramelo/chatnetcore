@@ -40,7 +40,7 @@ namespace Bot
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
-            channel.QueueDeclare(queue: "stock",
+            channel.QueueDeclare(queue: "stock-result",
                                  durable: false,
                                  exclusive: false,
                                  autoDelete: false,

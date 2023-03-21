@@ -68,6 +68,14 @@ app.UseStaticFiles();
 app.UseRouting();
 
 
+var cookiePolicyOptions = new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.Lax,
+    HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.None,
+    Secure = CookieSecurePolicy.Always,
+};
+app.UseCookiePolicy(cookiePolicyOptions);
+
 app.UseAuthentication();
 app.UseIdentityServer();
 app.UseAuthorization();

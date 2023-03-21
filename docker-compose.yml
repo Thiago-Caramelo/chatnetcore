@@ -24,6 +24,7 @@ services:
     depends_on:
       - rabbitmq
       - mssql-server
+    restart: always
   api:
     build:
       context: .
@@ -38,6 +39,7 @@ services:
     depends_on:
       - rabbitmq
       - mssql-server
+    restart: always
   bot:
     build:
       context: .
@@ -47,6 +49,7 @@ services:
     depends_on:
       - rabbitmq
       - mssql-server
+    restart: always
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: 'rabbitmq'

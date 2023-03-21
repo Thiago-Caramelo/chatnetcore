@@ -26,13 +26,13 @@ var chatString = builder.Configuration.GetConnectionString("ChatConnection");
 builder.Services.AddDbContext<ChatDbContext>(options =>
     options.UseSqlServer(chatString));
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-.AddJwtBearer(options =>
-{
-    // base-address of your identityserver
-    options.Authority = "https://localhost:7127";
-    options.TokenValidationParameters.ValidateAudience = false;
-});
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//.AddJwtBearer(options =>
+//{
+//    // base-address of your identityserver
+//    options.Authority = "https://localhost:7127";
+//    options.TokenValidationParameters.ValidateAudience = false;
+//});
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddAutoMapper(typeof(ChatRepository));

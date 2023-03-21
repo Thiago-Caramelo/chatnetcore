@@ -16,7 +16,7 @@ export function Counter(props) {
             if (!token) return [];
 
             return axios
-                .get("https://localhost:8564/chat", { headers: !token ? {} : { 'Authorization': `Bearer ${token}` } })
+                .get("http://localhost:8564/chat", { headers: !token ? {} : { 'Authorization': `Bearer ${token}` } })
                 .then((res) => res.data);
         },
     });
@@ -31,7 +31,7 @@ export function Counter(props) {
         if (!user || !token) return false;
 
         const userName = user.name;
-        await axios.post("https://localhost:8564/chat", { userName, text }, { headers: !token ? {} : { 'Authorization': `Bearer ${token}` } });
+        await axios.post("http://localhost:8564/chat", { userName, text }, { headers: !token ? {} : { 'Authorization': `Bearer ${token}` } });
         queryClient.invalidateQueries({ queryKey: ['messages'] });
         setText('');
     };
