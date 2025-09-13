@@ -31,10 +31,10 @@ namespace Api.Controllers
             return _chatService.SendMessage(message);
         }
 
-        [HttpPost(Name = "Feature1")]
+        [HttpPost(Name = "Feature1-1")]
         public bool Feature1([FromBody] Message message)
         {
-            return true;//comment
+            return true;//comment-1
         }
     }
 }
