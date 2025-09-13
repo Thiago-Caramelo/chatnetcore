@@ -34,7 +34,7 @@ namespace Api.Controllers
         [HttpPost(Name = "Feature1")]
         public bool Feature1([FromBody] Message message)
         {
-            return true;
+            return true;//comment
         }
     }
 }
